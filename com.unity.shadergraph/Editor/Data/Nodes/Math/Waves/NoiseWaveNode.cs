@@ -23,16 +23,17 @@ namespace UnityEditor.ShaderGraph
 
         static string NoiseWave(
             [Slot(0, Binding.None)] DynamicDimensionVector In,
-            [Slot(1, Binding.MeshUV0)] Vector2 Seed,
-            [Slot(3, Binding.None, -0.5f, 0.5f, 1, 1)] Vector2 MinMax,
-            [Slot(4, Binding.None)] out DynamicDimensionVector Out)
+            [Slot(1, Binding.None, -0.5f, 0.5f, 1, 1)] Vector2 MinMax,
+            [Slot(2, Binding.None)] out DynamicDimensionVector Out)
         {
             return
                 @"
 {
-    {precision} randomno =  frac(sin(dot(Seed.x, float2(12.9898, 78.233)))*43758.5453);
+    float sinIn = sin(In);
+    float sinInOffset = sin(In + 1.0);
+    {precision} randomno =  frac(sin(dot(sinIn - sinInOffset, float2(12.9898, 78.233)))*43758.5453);
     float noise = lerp(MinMax.x, MinMax.y, randomno);
-    Out = sin(In) + noise;
+    Out = sinIn + noise;
 }
 ";
         }
