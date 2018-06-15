@@ -32,7 +32,7 @@ namespace UnityEditor.ShaderGraph
 {
     {precision} randomno =  frac(sin(dot(Seed, float2(12.9898, 78.233)))*43758.5453);
     float noise = lerp(MinMax.x, MinMax.y, randomno);
-    Out = sin(In + noise);
+    Out = sin(In) + noise;
 }
 ";
         }

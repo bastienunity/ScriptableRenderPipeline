@@ -27,7 +27,7 @@ namespace UnityEditor.ShaderGraph
             return
                 @"
 {
-    Out = 2.0 * ( (2.0 * floor(In)) - floor(2.0 * In) ) + 1.0;
+    Out = 2.0 * ( 2 * floor(In) - floor(2.0 * In) ) + 1.0;
 }
 ";
         }
