@@ -1385,7 +1385,7 @@ DirectLighting  EvaluateBSDF_Line(LightLoopContext lightLoopContext,
         // Apply FGD
         float3  specularFGD = 1;
         float   diffuseFGD, reflectivity;
-        GetPreIntegratedFGDCookTorranceLambert(NdotV, perceptualRoughness, F0, specularFGD, diffuseFGD, reflectivity);
+        GetPreIntegratedFGDCookTorranceAndLambert(NdotV, perceptualRoughness, F0, specularFGD, diffuseFGD, reflectivity);
 
         lighting.specular += coeff * specularFGD * ltcValue;
     }
@@ -1602,7 +1602,7 @@ DirectLighting  EvaluateBSDF_Rect(LightLoopContext lightLoopContext,
         // Apply FGD
         float3  specularFGD = 1;
         float   diffuseFGD, reflectivity;
-        GetPreIntegratedFGDCookTorranceLambert(NdotV, perceptualRoughness, F0, specularFGD, diffuseFGD, reflectivity);
+        GetPreIntegratedFGDCookTorranceAndLambert(NdotV, perceptualRoughness, F0, specularFGD, diffuseFGD, reflectivity);
 
         lighting.specular += coeff * specularFGD * ltcValue;
     }
@@ -1829,7 +1829,7 @@ IndirectLighting    EvaluateBSDF_Env(LightLoopContext lightLoopContext,
         // Apply FGD
         float3  specularFGD = 1;
         float   diffuseFGD, reflectivity;
-        GetPreIntegratedFGDCookTorranceLambert(NdotV, perceptualRoughness, F0, specularFGD, diffuseFGD, reflectivity);
+        GetPreIntegratedFGDCookTorranceAndLambert(NdotV, perceptualRoughness, F0, specularFGD, diffuseFGD, reflectivity);
 
         envLighting += lobeIntensity * specularFGD * preLD.xyz;
         sumWeights += preLD.w;
